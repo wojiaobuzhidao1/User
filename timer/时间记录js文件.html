@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+<title> New Document </title>
+<style>
+		.hide{
+			display: none;
+		}
+</style>
+</head>
+
+<body>
+	
+<form action="">
+<h3>点击开始测试出现图片开始测试，点击图片测试结束记录时间</h3>
+<br/>
+<br/>
+<br/>
+<button type="button" onclick="start()" id="world">开始测试</button>
+<!--修改test.jpg修改图片内容-->
+<img src="test.jpg" alt="" id="img" onclick="stop()"/>
+<input type="text" id="timetext" value="00时00分00秒" readonly><br>
+</form>
+
+<script language="javascript">
+
+<!--
+    //初始化变量
+	var hour,minute,second;//时 分 秒
+    hour=minute=second=0;//初始化
+	var img=document.getElementById("img");
+	img.className="hide";
+    var millisecond=0;//毫秒
+    var int;
+    //重置函数
+    function Reset()
+    {
+      window.clearInterval(int);
+      millisecond=hour=minute=second=0;
+      document.getElementById('timetext').value='00时00分00秒000毫秒';
+    }
+    //开始函数
+    function start()
+    {
+      int=setInterval(timer,50);//每隔50毫秒执行一次timer函数
+	  img.className="";
+	  world.className="hide";
+    }
+    //计时函数
+    function timer()
+    {
+      millisecond=millisecond+50;
+      if(millisecond>=1000)
+      {
+        millisecond=0;
+        second=second+1;
+      }
+      if(second>=60)
+      {
+        second=0;
+        minute=minute+1;
+      }
+
+      if(minute>=60)
+      {
+        minute=0;
+        hour=hour+1;
+      }
+      document.getElementById('timetext').value=hour+'时'+minute+'分'+second+'秒'+millisecond+'毫秒';
+
+    }
+    //暂停函数
+    function stop()
+    {
+      window.clearInterval(int);
+    }
+	//-->
+
+</script>
+</body>
+</html>
